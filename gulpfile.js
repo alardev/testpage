@@ -12,6 +12,7 @@ const plumber = require("gulp-plumber");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
+const bourbon = require("node-bourbon");
 
 // Load package.json for banner
 const pkg = require('./package.json');
@@ -72,6 +73,7 @@ function modules() {
     .pipe(gulp.dest('./vendor/simple-line-icons/fonts'));
   var simpleLineIconsCSS = gulp.src('./node_modules/simple-line-icons/css/**')
     .pipe(gulp.dest('./vendor/simple-line-icons/css'));
+
   return merge(bootstrap, fontAwesomeCSS, fontAwesomeWebfonts, jquery, jqueryEasing, simpleLineIconsFonts, simpleLineIconsCSS);
 }
 
@@ -83,6 +85,7 @@ function css() {
     .pipe(sass({
       outputStyle: "expanded",
       includePaths: "./node_modules",
+      includePaths: require('node-bourbon').includePaths,
     }))
     .on("error", sass.logError)
     .pipe(autoprefixer({

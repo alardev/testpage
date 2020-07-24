@@ -4,6 +4,32 @@
     background-color: white;
     @include transition-all;
     @include heading-font;
+    .navbar .nav-item:not(:last-child) {
+        margin-right: 35px;
+    }
+    .dropdown-toggle::after {
+        transition: transform 0.15s linear; 
+    }
+    .show.dropdown .dropdown-toggle::after {
+        transform: translateY(3px);
+    }
+    .dropdown:hover>.dropdown-menu{
+        display: block;
+    }
+    .dropdown {
+        .dropdown-menu {
+            transition: all 0.1s;
+            overflow: hidden;
+            transform-origin: top center;
+            transform: scale(1,0);
+            display: block;
+        }
+        &:hover {
+            .dropdown-menu {
+                transform: scale(1);
+            }
+        }
+    }
     .navbar-brand {
         color: $theme-primary;
         @include heading-font;
@@ -20,7 +46,7 @@
     .navbar-nav {
         > li {
             > a {
-                font-size: 11px;
+                font-size: 14px;
                 @include alt-font;
                 &.active {
                     color: $theme-primary !important;
